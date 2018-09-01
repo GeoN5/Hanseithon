@@ -21,7 +21,7 @@ interface UserService{
 
     @PUT("/{id}")//정보 수정
     @Multipart
-    fun modifyUser(@Path("id")id:String,@Part("data")modify: ModifyUser, @Part profile: MultipartBody.Part):Call<Response>
+    fun modifyUser(@Path("id")id:String,@Part("data")modify: ModifyUser, @Part profile: MultipartBody.Part):Call<UserResponse>
 
     @GET("/User/{id}")//유저 정보 불러오기
     fun loadUser(@Path("id")id:String) : Call<UserData>

@@ -134,17 +134,20 @@ class MypageFragment : Fragment(), EasyPermissions.PermissionCallbacks {
             val id: String? = SharedPreferenceUtil.getData(context!!, "username")
             val userService: UserService = RetrofitUtil.getLoginRetrofit(context!!).create(UserService::class.java)
             val modify = ModifyUser(password1EditText.text.toString(), phone.text.toString(), email.text.toString())
-            val call: Call<Response> = userService.modifyUser(id!!,modify, RetrofitUtil.createRequestBody(file, "profile"))
+            val call: Call<UserResponse> = userService.modifyUser(id!!,modify, RetrofitUtil.createRequestBody(file, "profile"))
 
-            call.enqueue(object : Callback<Response> {
-                override fun onFailure(call: Call<Response>?, t: Throwable?) {
+            call.enqueue(object : Callback<UserResponse> {
+                override fun onFailure(call: Call<UserResponse>, t: Throwable) {
                     Log.e(TAG, t.toString())
                     Toast.makeText(context, "알 수 없는 오류가 발생했습니다.", Toast.LENGTH_LONG).show()
                 }
 
-                override fun onResponse(call: Call<Response>?, response: retrofit2  .Response<Response>?) {
+                override fun onResponse(call: Call<UserResponse>?, response: retrofit2  .Response<UserResponse>?) {
                     if (response?.body() != null && response.body()!!.result.success) {
                         Toast.makeText(context, response.body()!!.result.message, Toast.LENGTH_LONG).show()
+                        SharedPreferenceUtil.saveData(context!!, "username", response.body()!!.user.name)
+                        SharedPreferenceUtil.saveData(context!!,"profile",response.body()!!.user.profile)
+                        SharedPreferenceUtil.saveData(context!!,"email",response.body()!!.user.email)
                         context!!.startActivity(Intent(context, MainActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
                     } else {
                         Toast.makeText(context, response!!.body()!!.result.message, Toast.LENGTH_LONG).show()

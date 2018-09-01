@@ -19,7 +19,7 @@
     <item
         android:id="@+id/action_mypage"
         android:enabled="true"
-        android:title="MyPage"
+        android:title="My Page"
         android:icon="@drawable/bottom_mypage"
         app:showAsAction="ifRoom"/>
 

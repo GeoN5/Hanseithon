@@ -12,7 +12,11 @@ data class Auth(val token:String)
 
 data class Username(val id: String)
 
-data class LoginResponse(val result: Result, val auth: Auth, val user: Username)
+data class UserResponse(val result: Result,val user:Navigation)
+
+data class Navigation(val name:String,val profile:String,val email: String)
+
+data class LoginResponse(val result: Result, val auth: Auth, val user: Navigation)
 
 data class UserData(val _id :String,val id:String,val pw:String,val profile:String,val name:String,val phone:String,val email:String)
 

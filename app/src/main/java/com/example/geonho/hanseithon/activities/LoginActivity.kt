@@ -55,7 +55,9 @@ class LoginActivity : AppCompatActivity() {
                     if (response.body() != null && response.body()!!.result.success) {
                         Toast.makeText(applicationContext, "로그인에 성공하였습니다!", Toast.LENGTH_LONG).show()
                         SharedPreferenceUtil.saveData(applicationContext, "token", response.body()!!.auth.token)
-                        SharedPreferenceUtil.saveData(applicationContext, "username", response.body()!!.user.id)
+                        SharedPreferenceUtil.saveData(applicationContext, "username", response.body()!!.user.name)
+                        SharedPreferenceUtil.saveData(applicationContext,"profile",response.body()!!.user.profile)
+                        SharedPreferenceUtil.saveData(applicationContext,"email",response.body()!!.user.email)
                         Log.d("token", SharedPreferenceUtil.getData(applicationContext, "token") + "is saved")
                         startActivity(Intent(this@LoginActivity, MainActivity::class.java))
                     } else {
