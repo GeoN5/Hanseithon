@@ -14,7 +14,8 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".activities.MainActivity"
-            android:label="Main Screen" />
+            android:label="Main Screen"
+            android:theme="@style/NoTitle"/>
         <activity
             android:name=".activities.SplashActivity"
             android:theme="@style/NoTitle">
@@ -30,10 +31,7 @@
         <activity
             android:name=".activities.RegisterActivity"
             android:label="Register Screen" />
-        <activity
-            android:name=".activities.NavigationActivity"
-            android:label="@string/title_activity_navigation"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+
     </application>
 
 </manifest>

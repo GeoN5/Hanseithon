@@ -4,21 +4,15 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
 import android.widget.Toast
 import com.example.geonho.hanseithon.R
-import android.support.design.widget.BottomNavigationView
 import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.view.Menu
 import android.view.MenuItem
 import com.example.geonho.hanseithon.SharedPreferenceUtil
-import com.example.geonho.hanseithon.fragment.HomeFragment
-import com.example.geonho.hanseithon.fragment.MainFragment
-import com.example.geonho.hanseithon.fragment.MineFragment
-import com.example.geonho.hanseithon.fragment.MypageFragment
+import com.example.geonho.hanseithon.fragment.*
 import com.example.geonho.hanseithon.loadImage
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
@@ -91,33 +85,34 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
 
         when (item.itemId) {
             R.id.nav_Home -> {
-                supportFragmentManager.beginTransaction().replace(R.id.content_main,HomeFragment.newInstance()).commit()
+                supportFragmentManager.beginTransaction().replace(R.id.content_main, HomeFragment.newInstance()).commit()
             }
-            R.id.nav_Home_lost->{
-
+            R.id.nav_Home_lost -> {
+                supportFragmentManager.beginTransaction().replace(R.id.content_main, HomeTab1Fragment.newInstance()).commit()
             }
-            R.id.nav_Home_find->{
-
+            R.id.nav_Home_find -> {
+                supportFragmentManager.beginTransaction().replace(R.id.content_main, HomeTab2Fragment.newInstance()).commit()
             }
             R.id.nav_Mine -> {
-                supportFragmentManager.beginTransaction().replace(R.id.content_main,MineFragment.newInstance()).commit()
+                supportFragmentManager.beginTransaction().replace(R.id.content_main, MineFragment.newInstance()).commit()
             }
-            R.id.nav_Mine_lost->{
-
+            R.id.nav_Mine_lost -> {
+                supportFragmentManager.beginTransaction().replace(R.id.content_main, MineTab1Fragment.newInstance()).commit()
             }
-            R.id.nav_Mine_find->{
-
+            R.id.nav_Mine_find -> {
+                supportFragmentManager.beginTransaction().replace(R.id.content_main, MineTab2Fragment.newInstance()).commit()
             }
-            R.id.nav_Mypage->{
-                supportFragmentManager.beginTransaction().replace(R.id.content_main,MypageFragment.newInstance()).commit()
+            R.id.nav_Mypage -> {
+                supportFragmentManager.beginTransaction().replace(R.id.content_main, MypageFragment.newInstance()).commit()
             }
-            R.id.nav_logout ->{
-                SharedPreferenceUtil.removePreferences(this@MainActivity,"username")
-                SharedPreferenceUtil.removePreferences(this@MainActivity,"token")
-                startActivity(Intent(this@MainActivity,LoginActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+            R.id.nav_logout -> {
+                SharedPreferenceUtil.removePreferences(this@MainActivity, "username")
+                SharedPreferenceUtil.removePreferences(this@MainActivity, "token")
+                SharedPreferenceUtil.removePreferences(this@MainActivity, "profile")
+                SharedPreferenceUtil.removePreferences(this@MainActivity, "email")
+                startActivity(Intent(this@MainActivity, LoginActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
             }
         }
-
         drawer_layout.closeDrawer(GravityCompat.START)
         return true
     }

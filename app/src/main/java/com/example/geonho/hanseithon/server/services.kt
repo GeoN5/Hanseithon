@@ -27,3 +27,11 @@ interface UserService{
     fun loadUser(@Path("id")id:String) : Call<UserData>
 
 }
+
+interface ListService{
+    @GET("/lostall")//전체중에 잃어버린것
+    fun lostall():Call<LostAll>
+
+    @GET("/findall")//전체중에 찾은것
+    fun findall():Call<FindAll>
+}

@@ -1,7 +1,5 @@
 package com.example.geonho.hanseithon.fragment
 
-import android.content.Context
-import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
@@ -17,7 +15,7 @@ class MainFragment : Fragment() {
 
     lateinit var fragmentView : View
     lateinit var fragment : Fragment
-    lateinit var fragmentManager: FragmentManager
+    private lateinit var mfragmentManager: FragmentManager
 
     companion object {
 
@@ -31,15 +29,15 @@ class MainFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         fragmentView =  inflater.inflate(R.layout.fragment_main, container, false)
-
+        init()
         return fragmentView
     }
 
     private fun init(){
-        fragmentManager = this
+        mfragmentManager = fragmentManager!!
         fragmentView.bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         fragment = HomeFragment.newInstance()
-        val transaction = fragmentManager.beginTransaction()
+        val transaction = mfragmentManager.beginTransaction()
         transaction.replace(R.id.fragment_container, fragment).commit()
     }
 
@@ -55,7 +53,7 @@ class MainFragment : Fragment() {
                 fragment = MypageFragment.newInstance()
             }
         }
-        val transaction = fragmentManager.beginTransaction()
+        val transaction = mfragmentManager.beginTransaction()
         transaction.replace(R.id.fragment_container, fragment).commit()
         true
     }

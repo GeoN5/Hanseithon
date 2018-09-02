@@ -21,3 +21,10 @@ data class LoginResponse(val result: Result, val auth: Auth, val user: Navigatio
 data class UserData(val _id :String,val id:String,val pw:String,val profile:String,val name:String,val phone:String,val email:String)
 
 data class ModifyUser(val pw:String,val phone:String,val email: String)
+
+data class AllData(val id:String ,val title:String,val content:String,val img:String,val tag:String,val location:String,val createDate:String)
+
+data class LostAll(val target:List<AllData>)
+
+data class FindAll(val target:List<AllData>)
+
