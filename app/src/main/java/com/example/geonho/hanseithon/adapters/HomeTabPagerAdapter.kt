@@ -8,21 +8,22 @@ import com.example.geonho.hanseithon.fragment.HomeTab2Fragment
 
 class HomeTabPagerAdapter(fm:FragmentManager?, val tabCount:Int) : FragmentStatePagerAdapter(fm) {
 
-    var fragment = Fragment()
+    var fragment = HomeTab1Fragment()
+    var fragment1 = HomeTab2Fragment()
     private val tabTitles = arrayOf("lost", "find")
-    override fun getItem(position: Int): Fragment {
+    override fun getItem(position: Int): Fragment? {
 
         // Returning the current tabs
         when (position) {
             0 -> {
-                fragment = HomeTab1Fragment()
+                return fragment
             }
             1 -> {
-                fragment = HomeTab2Fragment()
+                return fragment1
             }
-
+            else -> return null
         }
-        return fragment
+
     }
 
     override fun getPageTitle(position: Int): CharSequence? {

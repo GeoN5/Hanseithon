@@ -6,6 +6,7 @@ import android.content.SharedPreferences
 import android.net.Uri
 import android.widget.ImageView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import okhttp3.MediaType
 import okhttp3.MultipartBody
@@ -22,8 +23,9 @@ fun ImageView.loadImage(url : String,context: Context){//회원가입 할 때
     Glide.with(context).load(url).apply(RequestOptions().centerCrop()).into(this)
 }
 
-fun ImageView.loadImage(url : Uri, context: Context){//수정 할 때
-    Glide.with(context).load(url).apply(RequestOptions().centerCrop()).into(this)
+fun ImageView.loadImage(url : Uri, context: Context){//수정 할 때 (캐시 삭제후 로딩)
+    Glide.with(context).load(url).apply(RequestOptions().centerCrop().skipMemoryCache(true)
+            .diskCacheStrategy(DiskCacheStrategy.NONE)).into(this)
 }
 
 object RetrofitUtil {

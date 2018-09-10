@@ -36,18 +36,18 @@ class HomeFragment : Fragment() {
 
     private fun setTablayout(){
         val pager=HomeTabPagerAdapter(fragmentManager,2)
-        fragmentView.tab.getTabAt(0)!!.text =pager.getPageTitle(0)
-        fragmentView.tab.getTabAt(1)!!.text = pager.getPageTitle(1)
+        fragmentView.tab.addTab(fragmentView.tab.newTab().setText("lost"))
+        fragmentView.tab.addTab(fragmentView.tab.newTab().setText("find"))
         fragmentView.tab.tabGravity = TabLayout.GRAVITY_FILL
     }
 
     private fun setViewpager(){
-        val pagerAdapter = HomeTabPagerAdapter(fragmentManager, tab.tabCount)
-        viewPager.adapter = pagerAdapter
-        viewPager.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tab))
+        val pagerAdapter = HomeTabPagerAdapter(fragmentManager, fragmentView.tab.tabCount)
+        fragmentView.viewPager.adapter = pagerAdapter
+        fragmentView.viewPager.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(fragmentView.tab))
 
         // Set TabSelectedListener
-        tab.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+        fragmentView.tab.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabReselected(tab: TabLayout.Tab?) {
 
             }

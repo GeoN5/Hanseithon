@@ -46,8 +46,10 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
 
     private fun navigationHeaderset(){
         nav_view.getHeaderView(0).imageView.loadImage("http://207.148.88.110:3000/uploads/${SharedPreferenceUtil.getData(applicationContext,"profile")}.jpg",this)
-        nav_view.getHeaderView(0).name.text = SharedPreferenceUtil.getData(applicationContext,"username")!!
-        nav_view.getHeaderView(0).email.text = SharedPreferenceUtil.getData(applicationContext,"email")!!
+        nav_view.getHeaderView(0).name.text = "ㅁㄴㅇ"
+               // SharedPreferenceUtil.getData(applicationContext,"username")!!
+        nav_view.getHeaderView(0).email.text ="ㅁㄴㅇㅁㄴㅇ"
+                //SharedPreferenceUtil.getData(applicationContext,"email")!!
     }
 
     override fun onBackPressed() {
